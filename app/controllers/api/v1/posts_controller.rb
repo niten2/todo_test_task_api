@@ -1,11 +1,11 @@
 class Api::V1::PostsController < Api::V1::BaseController
 
   def index
-    # respond_with Post.all, each_serializer: PostCollectionSerializer
+    render json: @posts = Post.all
   end
 
   def show
-    # respond_with Post.find(params[:id])
+    render json: @post = Post.where(id: params[:id])
   end
 
   def create

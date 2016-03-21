@@ -17,6 +17,7 @@ gem 'simple_form'
 
 gem 'devise'
 gem "responders"
+gem 'seed-fu'
 
 group :development, :test do
 

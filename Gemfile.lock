@@ -230,6 +230,9 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    seed-fu (2.3.5)
+      activerecord (>= 3.1, < 4.3)
+      activesupport (>= 3.1, < 4.3)
     shellany (0.0.1)
     shoulda-matchers (3.1.1)
       activesupport (>= 4.0.0)
@@ -303,6 +306,7 @@ DEPENDENCIES
   rspec (~> 3.4)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
+  seed-fu
   shoulda-matchers
   simple_form
   slim-rails
