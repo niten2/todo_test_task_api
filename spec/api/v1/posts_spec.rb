@@ -13,18 +13,20 @@ describe 'Request API' do
       expect(response.body).to have_json_size(per_page)
     end
 
-    # it "count page" do
-    #   per_page = rand(1...5)
-    #   get '/api/v1/posts', page: 1, per_page: per_page
-    #   expect(response.body).to have_json_size(per_page)
-    # end
+    it "sort published_at DESC" do
+      get '/api/v1/posts'
 
-    # it "empty model" do
-    #   get '/api/requests/find_nomenclature_repairs', format: :json
-    #   expect(response.body).to have_json_size(0).at_path("requests")
-    # end
+      first_object_id = JSON.parse(response.body).first["id"]
+      last_created_at_id = Post.last.id
 
-  end
+      expect(first_object_id).to eq last_created_at_id
+    end
+
+    it "header count page and recording" do
+      #   get '/api/requests/find_nomenclature_repairs', format: :json
+      #   expect(response.body).to have_json_size(0).at_path("requests")
+      # end
+    end
 
 end
 
