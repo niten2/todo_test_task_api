@@ -22,11 +22,12 @@ describe 'Request API' do
       expect(first_object_id).to eq last_created_at_id
     end
 
-    it "header count page and recording" do
+    # it "header count page and recording" do
       #   get '/api/requests/find_nomenclature_repairs', format: :json
       #   expect(response.body).to have_json_size(0).at_path("requests")
       # end
-    end
+    # end
+  end
 
 end
 
