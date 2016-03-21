@@ -19,10 +19,14 @@ gem 'devise'
 gem "responders"
 gem 'seed-fu'
 
+# plaginate
+gem 'will_paginate'
+gem 'api-pagination'
+
 group :development, :test do
 
   # test
-  gem 'rspec', '~> 3.4'
+  gem 'rspec-rails', '~> 3.4'
   gem 'factory_girl_rails'
   gem 'shoulda-matchers'
   gem 'capybara'
@@ -31,6 +35,7 @@ group :development, :test do
   gem "database_cleaner"
   gem 'faker'
   gem 'fuubar'
+  gem 'json_spec'
 
   gem 'spring'
   gem 'spring-commands-rspec'
