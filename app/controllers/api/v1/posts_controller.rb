@@ -21,8 +21,8 @@ class Api::V1::PostsController < Api::V1::BaseController
   end
 
   def create
-    binding.pry
-    # respond_with Post.create(post_params)
+    @post = Post.create(post_params)
+    respond_with :api, :v1, @post
   end
 
 private
