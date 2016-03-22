@@ -66,18 +66,20 @@ describe 'Request API' do
 
   describe 'POST /create' do
     let(:user) { create(:user) }
-    # let(:post) { attributes_for(:post, user: user) }
 
     context 'with valid attributes' do
 
       it 'creates a new post' do
-        binding.pry
-        expect { post "/api/v1/posts", post: attributes_for(:post), format: :json, access_token: access_token.token }.to change(Post, :count).by(1)
+        user = create(:user)
+        @auth_headers = user.create_new_auth_token
+        expect { post "/api/v1/posts", { post: attributes_for(:post) }.merge(@auth_headers) }.to change(Post, :count).by(1)
       end
 
       it 'returns success code ' do
-        post "/api/v1/posts", post: attributes_for(:post)
-        expect(response).to be_success
+        user = create(:user)
+        @auth_headers = user.create_new_auth_token
+        post "/api/v1/posts", { post: attributes_for(:post) }.merge(@auth_headers)
+        expect(response.status).to eq 201
       end
     end
 

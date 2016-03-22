@@ -1,6 +1,7 @@
 class Api::V1::PostsController < Api::V1::BaseController
 
-  before_action :authenticate_api_user!, only: [ :create ]
+  include DeviseTokenAuth::Concerns::SetUserByToken
+  before_action :authenticate_api_v1_user!, only: [:create]
 
   def index
     page = params[:page]
@@ -23,7 +24,7 @@ class Api::V1::PostsController < Api::V1::BaseController
   end
 
   def create
-    binding.pry
+    # binding.pry
     @post = Post.create(post_params)
     respond_with :api, :v1, @post
   end
