@@ -28,7 +28,7 @@ class Api::V1::PostsController < Api::V1::BaseController
 private
 
   def post_params
-    params.require(:post).permit(:title, :body)
+    params.require(:post).permit(:title, :body, :published_at)
   end
 
   def set_header

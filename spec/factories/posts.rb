@@ -4,6 +4,7 @@ FactoryGirl.define do
 
     sequence(:title) { Faker::Name.title }
     sequence(:body) { Faker::Hipster.sentence }
+    published_at Time.now
 
     association :user, factory: :user
   end
