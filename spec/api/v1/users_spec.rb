@@ -1,26 +1,26 @@
-# require 'rails_helper'
+require 'rails_helper'
 
-# describe 'Request API' do
+describe 'User' do
 
-#   describe 'GET /find_nomenclature_repairs' do
+  describe 'POST /user' do
 
-#     let!(:vendor) { create(:vendor) }
-#     let!(:category_sale) { create(:category_sale) }
-#     let!(:nomenclature_repair) { create(:nomenclature_repair, vendor: vendor, category_sale: category_sale) }
 
-#     it "find_nomenclature_repairs" do
+    it "create user status 200" do
+      post '/api/v1/auth', attributes_for(:user), format: :json
+      expect(response.status).to eq 200
+    end
 
-#       get '/api/requests/find_nomenclature_repairs', format: :json, vendor: vendor.id, category_sale: category_sale.id
+    it "change count User" do
+      expect { post "/api/v1/auth/", attributes_for(:user) }.to change(User, :count).by(1)
+    end
 
-#       expect(response.body).to have_json_size(1).at_path("requests")
-#     end
+    it "sign in" do
+      user = create(:user)
+      post '/api/v1/auth/sign_in', format: :json, email: user.email, password: user.password
+      expect(response.status).to eq 200
+    end
 
-#     it "empty model" do
-#       get '/api/requests/find_nomenclature_repairs', format: :json
-#       expect(response.body).to have_json_size(0).at_path("requests")
-#     end
+  end
 
-#   end
-
-# end
+end
 

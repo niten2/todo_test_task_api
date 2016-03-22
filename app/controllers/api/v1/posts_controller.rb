@@ -1,5 +1,7 @@
 class Api::V1::PostsController < Api::V1::BaseController
 
+  before_action :authenticate_api_user!, only: [ :create ]
+
   def index
     page = params[:page]
     per_page = params[:per_page]
@@ -21,6 +23,7 @@ class Api::V1::PostsController < Api::V1::BaseController
   end
 
   def create
+    binding.pry
     @post = Post.create(post_params)
     respond_with :api, :v1, @post
   end

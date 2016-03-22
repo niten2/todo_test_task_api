@@ -16,6 +16,9 @@ gem 'jquery-validation-rails'
 gem 'simple_form'
 
 gem 'devise'
+gem 'devise_token_auth'
+gem 'omniauth'
+
 gem "responders"
 gem 'seed-fu'
 

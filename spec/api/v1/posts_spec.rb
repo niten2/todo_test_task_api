@@ -69,9 +69,11 @@ describe 'Request API' do
     # let(:post) { attributes_for(:post, user: user) }
 
     context 'with valid attributes' do
-      # it 'creates a new question' do
-      #   expect { post "/api/v1/questions/#{question.id}/answers", answer: attributes_for(:answer), format: :json, access_token: access_token.token }.to change(me.answers, :count).by(1)
-      # end
+
+      it 'creates a new post' do
+        binding.pry
+        expect { post "/api/v1/posts", post: attributes_for(:post), format: :json, access_token: access_token.token }.to change(Post, :count).by(1)
+      end
 
       it 'returns success code ' do
         post "/api/v1/posts", post: attributes_for(:post)
