@@ -10,7 +10,7 @@ class Post < ActiveRecord::Base
   # end
 
   def author_nickname
-    user.nickname ? user.nickname : "Not found"
+    user ? user.nickname : nil
   end
 
 private

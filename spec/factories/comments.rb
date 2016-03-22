@@ -2,7 +2,7 @@ FactoryGirl.define do
 
   factory :comment, class: Comment do
 
-    sequence(:body) { Faker::Lorem.words(5) }
+    sequence(:body) { Faker::Hipster.sentence }
 
     association :user, factory: :user
 
