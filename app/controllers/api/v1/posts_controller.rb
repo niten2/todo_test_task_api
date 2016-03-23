@@ -1,4 +1,5 @@
 class Api::V1::PostsController < Api::V1::BaseController
+  respond_to :json
 
   include DeviseTokenAuth::Concerns::SetUserByToken
   before_action :authenticate_api_v1_user!, only: [:create]
@@ -24,9 +25,7 @@ class Api::V1::PostsController < Api::V1::BaseController
   end
 
   def create
-    # binding.pry
-    @post = Post.create(post_params)
-    respond_with :api, :v1, @post
+    respond_with :api, :v1, @post = Post.create(title: params[:title], body: params[:body], published_at: params[:published_at])
   end
 
 private

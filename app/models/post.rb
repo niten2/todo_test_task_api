@@ -4,10 +4,7 @@ class Post < ActiveRecord::Base
 
   validates :title, :body, presence: true
 
-  before_create :set_published_at
-  # def published_at
-  #   created_at
-  # end
+  before_create :set_published_at_if_empty
 
   def author_nickname
     user ? user.nickname : nil
@@ -15,11 +12,12 @@ class Post < ActiveRecord::Base
 
 private
 
-  def  set_published_at
+  def set_published_at_if_empty
+
     ActiveRecord::Base.transaction do
+      raise ActiveRecord::Rollback if self.published_at.present?
       self.published_at = Time.now
     end
   end
-
 
 end

@@ -4,7 +4,7 @@ FactoryGirl.define do
 
     sequence(:title) { Faker::Name.title }
     sequence(:body) { Faker::Hipster.sentence }
-    published_at Time.now
+    sequence(:published_at) { Faker::Date.between(2.days.ago, Date.today) }
 
     association :user, factory: :user
   end
