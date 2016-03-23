@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-describe 'Post API' do
+describe 'show' do
 
-  describe 'GET /show' do
+  describe 'GET /api/v1/posts/:id/' do
 
     let!(:user) { create(:user) }
     let!(:post) { create(:post, user: user) }

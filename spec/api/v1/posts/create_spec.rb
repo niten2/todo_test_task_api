@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-describe 'Post API' do
+describe 'Create' do
 
-  describe 'POST /create' do
+  describe 'POST /api/v1/posts' do
     let(:user) { create(:user) }
 
     context 'authorization' do

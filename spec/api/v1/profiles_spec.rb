@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'User' do
+describe 'Profiles' do
 
   describe 'GET /api/v1/profiles/:id' do
 

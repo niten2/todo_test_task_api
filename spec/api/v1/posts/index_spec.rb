@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-describe 'Post API' do
+describe 'Index' do
 
-  describe 'GET /index' do
+  describe 'GET /api/v1/posts' do
 
     let!(:user) { create(:user) }
     let!(:posts) { create_list(:post, 5, user: user) }
