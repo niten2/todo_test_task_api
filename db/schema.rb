@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20160322144537) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "body"
-    t.string   "user_id"
+    t.integer  "user_id"
     t.string   "author"
     t.datetime "published_at"
     t.datetime "created_at",   null: false
@@ -32,13 +32,14 @@ ActiveRecord::Schema.define(version: 20160322144537) do
   create_table "posts", force: :cascade do |t|
     t.string   "title"
     t.string   "body"
+    t.integer  "user_id"
     t.string   "author"
-    t.string   "user_id"
     t.datetime "published_at"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
 
+  add_index "posts", ["body"], name: "index_posts_on_body", using: :btree
   add_index "posts", ["published_at"], name: "index_posts_on_published_at", using: :btree
   add_index "posts", ["title"], name: "index_posts_on_title", using: :btree
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
