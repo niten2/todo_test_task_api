@@ -1,5 +1,10 @@
 h1.center Welcome
 
+/ - @start_date = Time.now.utc - 10.hours
+/ - @end_date   = Time.now.utc + 10.hours
+
+/ - @start_date = Time.now.utc - 10.hours
+/ - @end_date   = Time.now.utc + 10.hours
 
 table border="1"
   thead
@@ -9,10 +14,9 @@ table border="1"
       th количество записей за период
       th количество комментариев за период
   tbody
-    - User.sort_by_rating.each do |user|
+    - User.sort_by_rating(@start_date, @end_date).each do |user|
       tr
         td = user.nickname
         td = user.email
         td = user.posts.count
         td = user.comments.count
-        td = user.rating_for_sort

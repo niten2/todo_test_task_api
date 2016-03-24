@@ -7,16 +7,30 @@ class User < ActiveRecord::Base
   has_many :posts
 
   def self.send_report(start_date, end_date, email)
-    EmailReportsJob.perform_now(start_date, end_date, email)
-    true
+    EmailReportsJob.perform_later(start_date, end_date, email)
   end
 
-  def self.sort_by_rating
-    User.all.sort_by(&:rating_for_sort)
+  def self.sort_by_rating(start_date = nil, end_date = nil)
+    User.all.sort_by {|a| a.rating(start_date, end_date) }
   end
 
-  def rating_for_sort
-    posts.count + (comments.count.to_f/10)
+  def rating(start_date= nil, end_date = nil)
+    if start_date.nil? || end_date.nil?
+      posts.count + (comments.count.to_f/10)
+    else
+      count_posts    = self.posts_between_date(start_date, end_date).count
+      count_comments = self.comments_between_date(start_date, end_date).count
+
+      count_posts + (count_comments.to_f/10)
+    end
+  end
+
+  def posts_between_date(start_date, end_date)
+    self.posts.where(published_at: start_date..end_date)
+  end
+
+  def comments_between_date(start_date, end_date)
+    self.comments.where(published_at: start_date..end_date)
   end
 
 end

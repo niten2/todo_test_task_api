@@ -41,4 +41,37 @@ describe User do
 
   end
 
+  describe "rating_for_sort" do
+    it "start_date or end_date = nil" do
+      user     = create(:user)
+      posts    = create_list(:post, 5, user: user)
+      comments = create_list(:comment, 5, user: user)
+      expect(user.rating).to eq 5.5
+    end
+
+    it "if post not range" do
+      user     = create(:user)
+      posts    = create_list(:post, 5, user: user, published_at: Time.now.utc - 11.hours)
+      comments = create_list(:comment, 5, user: user, published_at: Time.now.utc)
+
+      start_date = Time.now.utc - 10.hours
+      end_date   = Time.now.utc + 10.hours
+
+      expect(user.rating(start_date, end_date)).to eq 0.5
+    end
+
+    it "if comments not range" do
+      user     = create(:user)
+      posts    = create_list(:post, 5, user: user, published_at: Time.now.utc)
+      comments = create_list(:comment, 5, user: user, published_at: Time.now.utc + 11.hours)
+
+      start_date = Time.now.utc - 10.hours
+      end_date   = Time.now.utc + 10.hours
+
+      expect(user.rating(start_date, end_date)).to eq 5
+    end
+
+  end
+
+
 end
