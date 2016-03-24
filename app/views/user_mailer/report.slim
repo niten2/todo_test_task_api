@@ -11,10 +11,12 @@ table border="1"
       th email
       th количество записей за период
       th количество комментариев за период
+      th рейтинг (определяет сортировку)
   tbody
     - @users.sort_by_rating(@start_date, @end_date).each do |user|
       tr
         td = user.nickname
         td = user.email
-        td = user.posts.count
-        td = user.comments.count
+        td = user.posts_between_date(@start_date, @end_date).count
+        td = user.comments_between_date(@start_date, @end_date).count
+        td = user.rating(@start_date, @end_date)

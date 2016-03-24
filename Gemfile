@@ -24,6 +24,7 @@ gem 'seed-fu'
 
 gem "letter_opener", :group => :development
 gem 'sidekiq'
+gem 'sinatra', require: nil
 
 # plaginate
 gem 'will_paginate'

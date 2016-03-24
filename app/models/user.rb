@@ -20,13 +20,14 @@ class User < ActiveRecord::Base
   end
 
   def rating(start_date= nil, end_date = nil)
+
     if start_date.nil? || end_date.nil?
       posts.count + (comments.count.to_f/10)
     else
       count_posts    = self.posts_between_date(start_date, end_date).count
       count_comments = self.comments_between_date(start_date, end_date).count
 
-      count_posts + (count_comments.to_f/10)
+      return count_posts + (count_comments.to_f/10)
     end
   end
 
