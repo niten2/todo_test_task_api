@@ -22,6 +22,9 @@ gem 'omniauth'
 gem "responders"
 gem 'seed-fu'
 
+gem "letter_opener", :group => :development
+gem 'sidekiq'
+
 # plaginate
 gem 'will_paginate'
 gem 'api-pagination'

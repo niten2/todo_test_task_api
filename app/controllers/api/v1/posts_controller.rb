@@ -22,7 +22,9 @@ class Api::V1::PostsController < Api::V1::BaseController
   end
 
   def create
-   respond_with :api, :v1, @post = Post.create(title: params[:title], body: params[:body], published_at: params[:published_at], user_id: current_api_v1_user.id)
+    @post = Post.create(title: params[:title], body: params[:body], published_at: params[:published_at], user_id: current_api_v1_user.id)
+
+   respond_with :api, :v1, @post
   end
 
 private

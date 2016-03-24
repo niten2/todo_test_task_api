@@ -1,5 +1,8 @@
-h1.center Welcome
-
+p
+  | Аналитический отчет с
+  =<> @start_date
+  | по
+  =<> @end_date
 
 table border="1"
   thead
@@ -9,10 +12,9 @@ table border="1"
       th количество записей за период
       th количество комментариев за период
   tbody
-    - User.sort_by_rating.each do |user|
+    - @users.each do |user|
       tr
         td = user.nickname
         td = user.email
         td = user.posts.count
         td = user.comments.count
-        td = user.rating_for_sort
