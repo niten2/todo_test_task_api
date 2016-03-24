@@ -16,6 +16,11 @@ describe 'Profiles' do
       expect(response.body).to eq not_found
     end
 
+    it "user not exist status 404" do
+      get api_v1_profile_path(999)
+      expect(response.status).to eq 404
+    end
+
     %w(email nickname).each do |attr|
       it "does contain #{attr}" do
         user = create(:user)

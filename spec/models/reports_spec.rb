@@ -40,7 +40,7 @@ describe User do
     it "user exist" do
       user = create(:user)
       post = create(:post, user: user)
-      expect(post.author).to eq "/api/v1/profiles/" + user.id.to_s
+      expect(post.author).to eq user.id
     end
 
     it "user non exist" do

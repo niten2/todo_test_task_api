@@ -26,19 +26,19 @@ describe 'Create' do
         end
 
         it 'if published_at nil, published_at = Time.now' do
-          @time_now = Time.now
+          @time_now = DateTime.parse(Time.now.to_s)
           allow(Time).to receive(:now).and_return(@time_now)
 
           post "/api/v1/posts", {title: "title", body: "body"}.merge(@auth_headers)
-          response_time = JSON.parse(response.body)["published_at"]
-          expect(response_time).to eq @time_now.strftime("%d %B, %H:%M:%S ")
+          response_time = DateTime.parse(JSON.parse(response.body)["published_at"])
+          expect(response_time).to eq @time_now
         end
 
         it 'if published_at present' do
-          time = Time.now.utc + 10.hours
+          time = DateTime.parse((Time.now.utc + 10.hours).to_s)
 
           post "/api/v1/posts", {title: "title", body: "body", published_at: time}.merge(@auth_headers)
-          response_time = JSON.parse(response.body)["published_at"]
+          response_time = DateTime.parse(JSON.parse(response.body)["published_at"])
           expect(response_time).to eq time.strftime("%d %B, %H:%M:%S ")
         end
 
@@ -61,7 +61,7 @@ describe 'Create' do
           get api_v1_post_path(post)
 
           response_post = JSON.parse(response.body)["author"]
-          expect(response_post).to eq "/api/v1/profiles/" + user.id.to_s
+          expect(response_post).to eq user.id
         end
 
       end

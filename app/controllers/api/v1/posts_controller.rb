@@ -16,21 +16,20 @@ class Api::V1::PostsController < Api::V1::BaseController
     if @post
       respond_with @post
     else
-      render json: { error: "Not found" }
+      render json: { error: "Not found" }, status: 404
     end
 
   end
 
   def create
-    @post = Post.create(title: params[:title], body: params[:body], published_at: params[:published_at], user_id: current_api_v1_user.id)
-
+   @post = Post.create(post_params.merge(author: current_api_v1_user.id))
    respond_with :api, :v1, @post
   end
 
 private
 
   def post_params
-    params.require(:post).permit(:title, :body, :published_at)
+    params.permit(:title, :body, :published_at)
   end
 
   def set_header

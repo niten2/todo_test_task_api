@@ -6,7 +6,7 @@ class Api::V1::ProfilesController < Api::V1::BaseController
     if @user.present?
       respond_with @user
     else
-      render json: { "error" => "User not found" }
+      render json: { error: "User not found" }, status: 404
     end
   end
 

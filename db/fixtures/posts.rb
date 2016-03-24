@@ -3,7 +3,7 @@
   Post.seed do |post|
     post.title = Faker::Company.name
     post.body = Faker::Hipster.sentence
-    post.user_id = 1
+    post.author = 1
   end
 
 end
@@ -13,7 +13,7 @@ end
   Post.seed do |post|
     post.title = Faker::Company.name
     post.body = Faker::Hipster.sentence
-    post.user_id = 2
+    post.author = 2
   end
 
 end
@@ -23,7 +23,7 @@ end
   Post.seed do |post|
     post.title = Faker::Company.name
     post.body = Faker::Hipster.sentence
-    post.user_id = 3
+    post.author = 3
   end
 
 end

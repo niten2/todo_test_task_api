@@ -3,8 +3,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
   include DeviseTokenAuth::Concerns::User
 
-  has_many :comments
-  has_many :posts
+  has_many :posts   , foreign_key: :author, class_name: Post
+  has_many :comments, foreign_key: :author, class_name: Comment
 
   def self.send_report(start_date = "", end_date = "", email = "")
     begin
