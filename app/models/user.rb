@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :posts
 
-  def self.send_report(start_date, end_date, email)
+  def self.send_report(start_date = "", end_date = "", email = "")
     begin
       Date.parse(start_date) || Date.parse(end_date)
       EmailReportsJob.perform_later(start_date, end_date, email)

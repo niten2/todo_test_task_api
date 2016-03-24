@@ -8,8 +8,8 @@ require 'shoulda-matchers'
 
 # require 'lurker/spec_helper'
 # require 'cancan/matchers'
-# require 'sidekiq/testing'
-# Sidekiq::Testing.fake!
+require 'sidekiq/testing'
+Sidekiq::Testing.fake!
 
 ActiveRecord::Migration.maintain_test_schema!
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
