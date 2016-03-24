@@ -8,7 +8,7 @@ class Api::V1::ReportsController < Api::V1::BaseController
     if User.send_report(start_date, end_date, email)
       render json: { "message" => "Report generation started" }
     else
-      render json: { "errors" => "Report can't send" }
+      render json: { "errors" => "Report can't send, format date: 'DD/MM/YYYY'" }
     end
 
   end

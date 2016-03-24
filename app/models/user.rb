@@ -7,7 +7,12 @@ class User < ActiveRecord::Base
   has_many :posts
 
   def self.send_report(start_date, end_date, email)
-    EmailReportsJob.perform_later(start_date, end_date, email)
+    begin
+      Date.parse(start_date) || Date.parse(end_date)
+      EmailReportsJob.perform_later(start_date, end_date, email)
+    rescue ArgumentError
+      return false
+    end
   end
 
   def self.sort_by_rating(start_date = nil, end_date = nil)
