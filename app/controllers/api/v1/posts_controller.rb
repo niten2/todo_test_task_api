@@ -33,7 +33,7 @@ private
   end
 
   def set_header
-    response.headers["posts"] = @posts.count.to_s
+    response.headers["posts"]  = @posts.count.to_s
     response.headers["pages"]  = @posts.total_pages.to_s
   end
 

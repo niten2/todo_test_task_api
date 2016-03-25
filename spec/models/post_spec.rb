@@ -41,6 +41,7 @@ describe Post do
   end
 
   describe "set_author" do
+
     it "user exist" do
       user = create(:user)
       post = create(:post, user: user)
@@ -51,6 +52,7 @@ describe Post do
       post = create(:post, user: nil)
       expect(post.author).to eq nil
     end
+
   end
 
 

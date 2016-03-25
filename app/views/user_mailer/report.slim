@@ -1,7 +1,7 @@
 p
-  | Аналитический отчет с
+  | Analytical report by
   =<> @start_date
-  | по
+  | to
   =<> @end_date
 
 table border="1"
@@ -9,8 +9,8 @@ table border="1"
     tr
       th nickname
       th email
-      th количество записей за период
-      th количество комментариев за период
+      th number of records  for the period
+      th number of comments for a   period
   tbody
     - @users.sort_by_rating(@start_date, @end_date).each do |user|
       tr

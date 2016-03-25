@@ -17,12 +17,9 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   config.include Capybara::DSL
-  # config.include JsonSpec::Helpers
+  config.include JsonSpec::Helpers
 
   config.include Devise::TestHelpers, type: :controller
-  config.include AcceptanceMacros, type: :feature
-  config.extend ControllerMacros, type: :controller
-  # config.include OmniauthMacros
 
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.infer_spec_type_from_file_location!

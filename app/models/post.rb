@@ -7,7 +7,7 @@ class Post < ActiveRecord::Base
   before_create :set_published_at_if_empty
 
   def author_nickname
-    user ? user.nickname : nil
+    user.try(:nickname)
   end
 
 private

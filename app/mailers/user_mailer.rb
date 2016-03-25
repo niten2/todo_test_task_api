@@ -8,7 +8,7 @@ class UserMailer < ApplicationMailer
 
     @email = email
 
-    mail(to: @email, subject: "Аналитический отчёт c #{@start_date} по #{@end_date}")
+    mail(to: @email, subject: "Analytical report by #{@start_date} to #{@end_date}")
   end
 
 end

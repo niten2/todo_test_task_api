@@ -7,20 +7,24 @@ describe User do
 
   describe "send_report" do
 
-    # it "success" do
-    #   user = create(:user)
-    #   start_date = Time.now - 10.hours
-    #   end_date = Time.now + 10.hours
-    #   email = "test@test.com"
+    it "success if start_date and end_date date" do
+      start_date = "11/02/2005"
+      end_date   = "11/02/2019"
+      email      = "test@test.com"
 
-    #   user.send_report(start_date, end_date, email)
+      expect(EmailReportsJob).to receive(:perform_later).with(start_date, end_date, email).and_call_original
+      User.send_report(start_date, end_date, email)
+    end
 
+    it "false if start_date and end_date empty string" do
+      expect(EmailReportsJob).to_not receive(:perform_later).and_call_original
+      User.send_report("", "", "")
+    end
 
-    # end
-
-    # it "fail" do
-
-    # end
+    it "false if start_date and end_date nil" do
+      expect(EmailReportsJob).to_not receive(:perform_later).and_call_original
+      User.send_report(nil, nil, nil)
+    end
 
   end
 
@@ -41,7 +45,7 @@ describe User do
 
   end
 
-  describe "rating_for_sort" do
+  describe "rating" do
     it "start_date or end_date = nil" do
       user     = create(:user)
       posts    = create_list(:post, 5, user: user)
@@ -49,7 +53,7 @@ describe User do
       expect(user.rating).to eq 5.5
     end
 
-    it "if post not range" do
+    it "post not range" do
       user     = create(:user)
       posts    = create_list(:post, 5, user: user, published_at: Time.now.utc - 11.hours)
       comments = create_list(:comment, 5, user: user, published_at: Time.now.utc)
@@ -60,7 +64,7 @@ describe User do
       expect(user.rating(start_date, end_date)).to eq 0.5
     end
 
-    it "if comments not range" do
+    it "comments not range" do
       user     = create(:user)
       posts    = create_list(:post, 5, user: user, published_at: Time.now.utc)
       comments = create_list(:comment, 5, user: user, published_at: Time.now.utc + 11.hours)

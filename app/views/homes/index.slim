@@ -1,21 +1,3 @@
-h1.center Welcome
+h1.center Welcome to Test Task API
 
 
-table border="1"
-  thead
-    tr
-      th nickname
-      th email
-      th количество записей за период
-      th количество комментариев за период
-  tbody
-    - @start_date = "11/01/2016"
-    - @end_date = "11/01/2017"
-
-    - User.all.sort_by_rating(@start_date, @end_date).each do |user|
-      tr
-        td = user.nickname
-        td = user.email
-        td = user.posts_between_date(@start_date, @end_date).count
-        td = user.comments_between_date(@start_date, @end_date).count
-        td = user.rating(@start_date, @end_date)

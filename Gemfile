@@ -8,20 +8,25 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
+gem 'jquery-validation-rails'
 gem 'jbuilder', '~> 2.0'
+
 gem "slim-rails"
 gem 'materialize-sass'
-gem 'jquery-validation-rails'
 gem 'simple_form'
-
-gem 'devise'
-gem 'devise_token_auth'
-gem 'omniauth'
 
 gem "responders"
 gem 'seed-fu'
 
+# auth
+gem 'devise'
+gem 'devise_token_auth'
+gem 'omniauth'
+
+# email
 gem "letter_opener", :group => :development
+
+# job
 gem 'sidekiq'
 gem 'sinatra', require: nil
 

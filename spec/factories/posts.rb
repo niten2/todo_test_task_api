@@ -7,7 +7,9 @@ FactoryGirl.define do
     sequence(:published_at) { Faker::Date.between(2.days.ago, Date.today) }
 
     association :user
+
   end
+
 
 end
 
