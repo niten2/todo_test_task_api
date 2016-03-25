@@ -54,16 +54,6 @@ describe 'Create' do
           expect(response_errors["body"]).to eq ["can't be blank"]
         end
 
-        it 'check autor in post' do
-          post "/api/v1/posts", attributes_for(:post).merge(@auth_headers)
-          post = Post.first
-
-          get api_v1_post_path(post)
-
-          response_post = JSON.parse(response.body)["author"]
-          expect(response_post).to eq user.id
-        end
-
       end
 
       context 'with invalid attributes' do

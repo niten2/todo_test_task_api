@@ -1,8 +1,8 @@
 default: &default
   adapter: postgresql
   encoding: utf8
-  username: postgres
-  password: 1
+  username: username
+  password: password
   host: localhost
 
 development:
@@ -13,3 +13,6 @@ test:
   <<: *default
   database: test_test_task_api
 
+production:
+  <<: *default
+  database: production_test_task_api
