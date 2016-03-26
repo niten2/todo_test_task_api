@@ -67,6 +67,12 @@ describe 'Create' do
           post "/api/v1/posts", {  title: "", body: "", published_at: "" }.merge!(@auth_headers)
           expect(response.status).to eq 422
         end
+
+        it 'returns 422 code' do
+          post "/api/v1/posts", { }.merge!(@auth_headers)
+          expect(response.status).to eq 422
+        end
+
       end
     end
 
