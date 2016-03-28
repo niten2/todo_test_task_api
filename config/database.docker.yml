@@ -1,9 +1,11 @@
 default: &default
   adapter: postgresql
-  encoding: utf8
+  encoding: unicode
+  pool: 5
+  timeout: 5000
   username: postgres
-  password: 1
-  host: localhost
+  host: <%= ENV['POSTGRES_PORT_5432_TCP_ADDR'] %>
+  port: <%= ENV['POSTGRES_PORT_5432_TCP_PORT'] %>
 
 development:
   <<: *default
@@ -12,7 +14,3 @@ development:
 test:
   <<: *default
   database: app_test
-
-# production:
-#   <<: *default
-#   database: app_production
